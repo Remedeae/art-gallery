@@ -1,15 +1,15 @@
-import Artitem from './components/ArtItem.jsx';
-import bilateral from './assets/bilateral.jpg';
-import dsa from './assets/dsa-the-hunter.jpg';
-import enclosed from './assets/enclosed.jpg';
-import likeSand from './assets/like-sand.jpg';
-import lurker from './assets/lurker-below.jpg';
-import persephone from './assets/persephone.jpg'
-import redux from './assets/redux-of-the-inifite.jpg';
-import right from './assets/right-between-the-eyes.jpg';
-import riverSpirit from './assets/river-spirit.jpg';
-import spino from './assets/spinosaurus.jpg';
-import winterLantern from './assets/winter-lantern.jpg';
+import Artitem from '../components/ArtItem.jsx'
+import bilateral from '../assets/bilateral.jpg';
+import dsa from '../assets/dsa-the-hunter.jpg';
+import enclosed from '../assets/enclosed.jpg';
+import likeSand from '../assets/like-sand.jpg';
+import lurker from '../assets/lurker-below.jpg';
+import persephone from '../assets/persephone.jpg'
+import redux from '../assets/redux-of-the-inifite.jpg';
+import right from '../assets/right-between-the-eyes.jpg';
+import riverSpirit from '../assets/river-spirit.jpg';
+import spino from '../assets/spinosaurus.jpg';
+import winterLantern from '../assets/winter-lantern.jpg';
 
 function Gallery() {
     return (
