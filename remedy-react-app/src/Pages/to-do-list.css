@@ -1,0 +1,30 @@
+ul {
+    list-style: none;
+}
+
+li,
+li>div {
+    display: flex;
+    align-items: center;
+}
+
+li {
+    justify-content: space-between;
+    max-width: 300px;
+    width: 100%;
+}
+
+.arrow-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.fa-sort-up,
+.fa-sort-down {
+    transform: scaleX(1.5);
+    transform: scaleY(0.7);
+}
+/* how come I can't scale on the X-axis? Right now I don't know if it's in react or css this is the issue. */
