@@ -15,19 +15,33 @@ function List() {
     function handleRemoveTask(index) {
         setTasks(tasks.filter((_, i) => i !== index))
     }
-    //I do not understand how to execute things in react, there are so many different things. So this works if you
-    //update by using the button, but that's not how it should work.
+    //Is there a more efficient way to do this? I bet there is.
     function handleTaskPrioUp(index) {
-        let prevIndex = index - 1;
-        let nextIndex = index + 1;
-        tasks.splice(prevIndex, 0, tasks[index]);
-        tasks.splice(nextIndex, 1);
+        if (index > 0) {
+            let insertAt = index - 1;
+            let insertEnd = index + 1;
+            const prioUp = [
+                ...tasks.slice(0, insertAt),
+                tasks[index],
+                tasks[insertAt],
+                ...tasks.slice(insertEnd)
+            ];
+            setTasks(prioUp);
+        }
     }
     function handleTaskPrioDown(index) {
-        let nextIndex = index + 1;
-        let secoundNextIndex = index + 2;
-        tasks.splice(index, 0, tasks[nextIndex]);
-        tasks.splice(secoundNextIndex, 1);
+        let overflowStop = tasks.length - 1;
+        if (index < overflowStop) {
+            const insertAt = index + 1;
+            const insertEnd = index + 2;
+            const prioDown = [
+                ...tasks.slice(0, index),
+                tasks[insertAt],
+                tasks[index],
+                ...tasks.slice(insertEnd)
+            ];
+            setTasks(prioDown);
+        }
     }
 
     return (
