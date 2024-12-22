@@ -3,7 +3,7 @@ ul {
 }
 
 li,
-li>div {
+li > div {
     display: flex;
     align-items: center;
 }

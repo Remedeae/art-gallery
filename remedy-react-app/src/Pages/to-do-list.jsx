@@ -2,15 +2,13 @@ import { useState } from "react";
 import './to-do-list.css';
 
 function List() {
-
-    const [tasks, setTasks] = useState(["Clean litter-box", "Cook food", "Pet the cat", "Buy a new rug", "Cause trouble"]);
+    const initialTask = ["Clean litter-box", "Cook food", "Pet the cat", "Buy a new rug", "Cause trouble"];
+    const [tasks, setTasks] = useState(initialTask);
+    const [newTask, setNewTask] = useState("");
 
     function handleAddTask() {
-        const newTask = document.getElementById("taskInput").value;
-        document.getElementById("taskInput").value = "";
-
         setTasks((t) => [...t, newTask]);
-
+        setNewTask("");
     }
     function handleRemoveTask(index) {
         setTasks(tasks.filter((_, i) => i !== index))
@@ -18,29 +16,16 @@ function List() {
     //Is there a more efficient way to do this? I bet there is.
     function handleTaskPrioUp(index) {
         if (index > 0) {
-            let insertAt = index - 1;
-            let insertEnd = index + 1;
-            const prioUp = [
-                ...tasks.slice(0, insertAt),
-                tasks[index],
-                tasks[insertAt],
-                ...tasks.slice(insertEnd)
-            ];
-            setTasks(prioUp);
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index-1]] = [updatedTasks[index - 1], updatedTasks[index]]
+            setTasks(updatedTasks);
         }
     }
     function handleTaskPrioDown(index) {
-        let overflowStop = tasks.length - 1;
-        if (index < overflowStop) {
-            const insertAt = index + 1;
-            const insertEnd = index + 2;
-            const prioDown = [
-                ...tasks.slice(0, index),
-                tasks[insertAt],
-                tasks[index],
-                ...tasks.slice(insertEnd)
-            ];
-            setTasks(prioDown);
+        if (index < tasks.length - 1) {
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]]
+            setTasks(updatedTasks);
         }
     }
 
@@ -62,8 +47,16 @@ function List() {
                     </li>
                 ))}
             </ul>
-            <input id="taskInput" type="text" placeholder="Enter Task" />
-            <button onClick={handleAddTask} >Add task</button>
+            <label htmlFor="newTask">Enter task here</label>
+            <div>
+                <input
+                    id="newTask"
+                    type="text"
+                    placeholder="Enter Task"
+                    value={newTask}
+                    onChange={(e) => setNewTask(e.target.value)} />
+                <button onClick={handleAddTask} >Add task</button>
+            </div>
         </div>
     );
 }
